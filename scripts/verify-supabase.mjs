@@ -25,6 +25,19 @@ if (error) {
 }
 console.log("OK — business_settings:", data?.brand_name ?? "(no row)");
 
+const { data: menu, error: menuErr } = await pub
+  .from("daily_menus")
+  .select("id, menu_date, status")
+  .eq("status", "published")
+  .order("menu_date", { ascending: false })
+  .limit(1)
+  .maybeSingle();
+if (menuErr) {
+  console.error("Published menu check failed:", menuErr.message);
+  process.exit(1);
+}
+console.log("OK — latest published menu:", menu?.menu_date ?? "(none)");
+
 if (service) {
   const admin = createClient(url, service, { auth: { persistSession: false } });
   const { count, error: cErr } = await admin.from("daily_menus").select("*", { count: "exact", head: true });
