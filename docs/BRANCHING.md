@@ -31,3 +31,4 @@ After merge, update `docs/implementation-plan.md` and `docs/requirements.md` on 
 - Never commit `.env.local` or API secrets.
 - Keep PRs focused on one iteration where possible.
 - Run `npm run lint && npm run typecheck && npm run test && npm run build` before opening a PR.
+- CI and deploy flow: [PIPELINE.md](./PIPELINE.md) · production checklist: [PRODUCTION.md](./PRODUCTION.md).
