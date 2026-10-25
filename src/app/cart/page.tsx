@@ -1,7 +1,10 @@
 import { ButtonLink } from "@/components/ui/button";
 import { formatInrFromPaise } from "@/domain/money";
+import { buildCartWhatsAppOrderMessage, resolveWhatsAppOrderUrl } from "@/lib/whatsapp-order";
 import { readCartAction } from "@/server/actions/cart-actions";
 import { createSupabaseServerClient } from "@/server/db/supabase-server";
+import { fetchBusinessSettings } from "@/server/queries/menu";
+import { fetchCartDisplayRows } from "@/server/queries/cart-lines";
 import { isSupabaseConfigured } from "@/lib/env";
 import Link from "next/link";
 
@@ -31,35 +34,28 @@ export default async function CartPage() {
   }
 
   const supabase = await createSupabaseServerClient();
-  const { data: items } = await supabase!
-    .from("daily_menu_items")
-    .select(
-      `
-      id,
-      price_paise,
-      product_variants ( name, products ( name ) )
-    `,
-    )
-    .eq("daily_menu_id", cart.dailyMenuId)
-    .in("id", cart.lines.map((l) => l.dailyMenuItemId));
-
-  const rows = cart.lines.map((line) => {
-    const row = items?.find((i) => i.id === line.dailyMenuItemId);
-    const variant = row?.product_variants as unknown as {
-      name: string;
-      products: { name: string };
-    } | null;
-    const unit = (row?.price_paise as number) ?? 0;
-    const lineTotal = unit * line.quantity;
-    return {
-      id: line.dailyMenuItemId,
-      name: variant?.products.name ?? "Item",
-      variant: variant?.name ?? "",
-      quantity: line.quantity,
-      lineTotal,
-    };
-  });
+  const rows = await fetchCartDisplayRows(supabase!, cart);
   const total = rows.reduce((sum, r) => sum + r.lineTotal, 0);
+  const settings = await fetchBusinessSettings();
+  const { data: menuRow } = await supabase!
+    .from("daily_menus")
+    .select("menu_date")
+    .eq("id", cart.dailyMenuId)
+    .maybeSingle();
+  const menuDate = menuRow?.menu_date ?? null;
+
+  const whatsappMessage = buildCartWhatsAppOrderMessage({
+    brandName: settings?.brand_name ?? "Mom's Curry Co.",
+    menuDate,
+    lines: rows.map((r) => ({
+      name: r.name,
+      variant: r.variant,
+      quantity: r.quantity,
+      lineTotalPaise: r.lineTotal,
+    })),
+    totalPaise: total,
+  });
+  const whatsappOrderUrl = resolveWhatsAppOrderUrl(settings ?? {}, whatsappMessage);
 
   return (
     <div className="mx-auto max-w-2xl px-4 py-12">
@@ -80,11 +76,26 @@ export default async function CartPage() {
         <span>{formatInrFromPaise(total)}</span>
       </div>
       <p className="mt-2 text-xs text-brown/60">
-        Final total including delivery and discounts is calculated at checkout.
+        Pay on delivery and final totals are confirmed on website checkout, or when you send the
+        WhatsApp request below.
       </p>
-      <div className="mt-8 flex gap-3">
-        <ButtonLink href="/checkout">Checkout</ButtonLink>
-        <Link href="/menu" className="text-sm text-terracotta underline">Continue shopping</Link>
+      <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+        <ButtonLink href="/checkout">Checkout on website</ButtonLink>
+        {whatsappOrderUrl ? (
+          <a
+            href={whatsappOrderUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center rounded-full bg-[#25D366] px-5 py-2.5 text-sm font-medium text-white shadow-sm hover:opacity-95"
+          >
+            Send order on WhatsApp
+          </a>
+        ) : (
+          <span className="text-sm text-brown/60">WhatsApp ordering not configured.</span>
+        )}
+        <Link href="/menu" className="text-sm text-terracotta underline sm:ml-1">
+          Continue shopping
+        </Link>
       </div>
     </div>
   );

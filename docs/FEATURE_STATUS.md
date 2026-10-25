@@ -13,7 +13,7 @@ This is an honest map of what **Mom's Curry Co. v0.1** ships today versus the fu
 | FR-005 | Cookie cart | **Done** | |
 | FR-006 | Server checkout, idempotency | **Done** | Service role + pepper |
 | FR-007 | Admin auth + profiles | **Done** | `/admin/login` |
-| FR-008 | Admin menu/product UI | **Not started** | Use Supabase or iteration/2 |
+| FR-008 | Admin menu/product UI | **Done (v1)** | `/admin/products`, `/admin/menus` |
 | FR-009 | Admin orders + status | **Done** | `/admin/orders` |
 | FR-010 | Pickup/delivery from settings | **Partial** | Checkout respects flags |
 
@@ -41,7 +41,8 @@ This is an honest map of what **Mom's Curry Co. v0.1** ships today versus the fu
 
 - **Phone / WhatsApp:** configurable in **`business_settings`** via **`/admin/settings`**, or optional env overrides (`NEXT_PUBLIC_WHATSAPP_PHONE`, `NEXT_PUBLIC_WHATSAPP_URL`).
 - **Production default:** `8076577033` → `https://wa.me/918076577033` (applied in Supabase).
-- WhatsApp is **enquiries only**; orders remain on-site checkout.
+- **Cart → “Send order on WhatsApp”** pre-fills items; customer adds name/phone in WhatsApp.
+- Website checkout remains available (pay on delivery).
 
 ## Recommended next iterations
 

@@ -47,6 +47,11 @@ export async function MenuDayView({ menuDate, title }: Props) {
               {eligibility.reason} You can still browse items below.
             </p>
           ) : null}
+          <p className="mt-4 text-sm text-brown/70">
+            Add items to your cart, then{" "}
+            <Link href="/cart" className="text-terracotta underline">send your order on WhatsApp</Link> or
+            checkout on the website.
+          </p>
           <ul className="mt-8 divide-y divide-forest/10">
             {menu.items.map((item) => (
               <li key={item.id} className="flex flex-col gap-3 py-6 sm:flex-row sm:items-center sm:justify-between">

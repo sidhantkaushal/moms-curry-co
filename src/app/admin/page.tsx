@@ -45,10 +45,18 @@ export default async function AdminHomePage() {
           </Link>
         </li>
         <li className="rounded-xl border border-forest/10 p-5">
-          <h2 className="font-medium">Menu &amp; products</h2>
-          <p className="mt-1 text-sm text-brown/70">
-            Catalogue UI is on iteration/2. Use Supabase Table Editor until then.
-          </p>
+          <h2 className="font-medium">Products &amp; catalogue</h2>
+          <p className="mt-1 text-sm text-brown/70">Add dishes, variants, and prices.</p>
+          <Link href="/admin/products" className="mt-3 inline-block text-sm text-terracotta underline">
+            Manage products
+          </Link>
+        </li>
+        <li className="rounded-xl border border-forest/10 p-5">
+          <h2 className="font-medium">Daily menus</h2>
+          <p className="mt-1 text-sm text-brown/70">Publish today&apos;s menu, sold-out toggles, duplicate.</p>
+          <Link href="/admin/menus" className="mt-3 inline-block text-sm text-terracotta underline">
+            Manage menus
+          </Link>
         </li>
       </ul>
     </div>
