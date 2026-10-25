@@ -7,6 +7,12 @@ export default defineConfig({
     include: ["src/**/*.test.ts"],
     pool: "threads",
     maxWorkers: 1,
+    poolOptions: {
+      threads: {
+        minThreads: 1,
+        maxThreads: 1,
+      },
+    },
   },
   resolve: {
     alias: {

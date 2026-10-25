@@ -15,7 +15,7 @@ Personal project for **Mom's Curry Co.** — India market, INR, `Asia/Kolkata`. 
 | FR-009 | P0 | Order admin | List, status transitions | Admin orders page | Partial |
 | FR-010 | P0 | Pickup/delivery | Settings-driven | Checkout form | Partial |
 | FR-011 | P1 | Operating hours | JSON in settings | Not started | Not started |
-| FR-012 | P1 | Marketplace links | `business_settings` URLs | Not started | Not started |
+| FR-012 | P1 | Marketplace links | `business_settings` URLs | Contact + admin settings | Partial |
 | FR-013 | P1 | Promotions | Server validation on checkout | Partial | Partial |
 | FR-014 | P1 | Reviews | Moderation, secure token | Not started | Not started |
 | FR-015 | P1 | Order tracking | Token URL `/order/[token]` | Manual | Partial |

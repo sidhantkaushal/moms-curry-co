@@ -7,7 +7,8 @@ All operational facts are **owner-provided**. The app does not ship with real ph
 | Field | Purpose |
 |-------|---------|
 | `contact_email`, `contact_phone` | Contact page |
-| `whatsapp_url` | WhatsApp CTA (link only — not an order channel) |
+| `whatsapp_url` | Full WhatsApp link (e.g. `https://wa.me/918076577033`). If empty, built from `contact_phone`. |
+| `contact_phone` | Display + tel link; also used for WhatsApp when `whatsapp_url` is empty |
 | `instagram_url`, `zomato_url`, `swiggy_url` | Optional discovery buttons when set |
 | `pickup_enabled`, `delivery_enabled` | Checkout fulfilment |
 | `delivery_fee_paise`, `min_order_paise` | Server-side totals |

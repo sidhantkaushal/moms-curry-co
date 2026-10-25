@@ -1,3 +1,4 @@
+import { WhatsAppCta } from "@/components/contact/whatsapp-cta";
 import { ButtonLink } from "@/components/ui/button";
 import { formatInrFromPaise } from "@/domain/money";
 import { todayMenuDateString, formatMenuDateLabel } from "@/lib/dates";
@@ -24,9 +25,10 @@ export default async function HomePage() {
             <p className="mt-4 max-w-xl text-lg text-brown/80">
               {settings?.tagline ?? "A little taste of home."}
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
+            <div className="mt-8 flex flex-wrap items-center gap-3">
               <ButtonLink href="/menu">View today&apos;s menu</ButtonLink>
               <ButtonLink href="/cart" variant="secondary">Go to cart</ButtonLink>
+              <WhatsAppCta settings={settings} variant="button" label="WhatsApp" />
             </div>
             {!isSupabaseConfigured() ? (
               <p className="mt-6 rounded-lg border border-gold/40 bg-gold/10 px-4 py-3 text-sm text-brown">

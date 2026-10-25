@@ -38,10 +38,16 @@ export default async function AdminHomePage() {
           </Link>
         </li>
         <li className="rounded-xl border border-forest/10 p-5">
+          <h2 className="font-medium">Contact &amp; marketplace links</h2>
+          <p className="mt-1 text-sm text-brown/70">Phone, WhatsApp, Zomato, Swiggy, Instagram.</p>
+          <Link href="/admin/settings" className="mt-3 inline-block text-sm text-terracotta underline">
+            Business settings
+          </Link>
+        </li>
+        <li className="rounded-xl border border-forest/10 p-5">
           <h2 className="font-medium">Menu &amp; products</h2>
           <p className="mt-1 text-sm text-brown/70">
-            Product and menu management UI is planned in the next increment. Use Supabase SQL editor or
-            Table Editor until then.
+            Catalogue UI is on iteration/2. Use Supabase Table Editor until then.
           </p>
         </li>
       </ul>
