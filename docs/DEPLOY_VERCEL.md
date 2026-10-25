@@ -2,6 +2,18 @@
 
 Best practice for this Next.js app: **Vercel** + **Supabase** (already set up), env vars only in the Vercel dashboard, **`main` deploys on git push** after GitHub is connected.
 
+## Vercel MCP status (Cursor)
+
+| Item | Status |
+|------|--------|
+| Project `moms-curry-co` (`prj_bAP8HTE2fAjaOroAXpa6mqRgwIni`) | Created (Next.js, Node 24.x, `bom1`) |
+| Env vars (Supabase URL/keys, pepper, prod `NEXT_PUBLIC_SITE_URL`) | Set on project |
+| Vercel Authentication (SSO) on production | **Disabled** (public site) |
+| Production deployment | **Not yet** — needs GitHub repo + first deploy |
+| GitHub `sidhantkaushal/moms-curry-co` | **Not found** until you run `scripts/push-to-github.sh` |
+
+After the repo exists, either **Import** it in the [Vercel project settings](https://vercel.com/sidhantkaushal/moms-curry-co/settings/git) (link to this project) or ask the agent to run a git-linked deploy via Vercel MCP.
+
 ## Prerequisites
 
 - Code on GitHub (`bash scripts/push-to-github.sh` after `gh auth login`)
@@ -40,7 +52,7 @@ Save, then test `/admin/login` on production.
 ## Option B — Vercel CLI (from your Mac)
 
 ```bash
-cd ~/Desktop/moms-curry-co
+cd "/Users/sidhantkaushal/Desktop/Sid's Section/moms-curry-co"
 npx vercel login
 npx vercel link          # create/link project
 bash scripts/vercel-env-sync.sh
