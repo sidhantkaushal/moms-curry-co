@@ -46,6 +46,8 @@ npm run dev
 
 See the `docs/` folder for requirements, architecture, security, testing and deployment.
 
+**Go live:** [docs/DEPLOY_VERCEL.md](docs/DEPLOY_VERCEL.md) (Vercel + Supabase Auth URLs).
+
 ## Before accepting real orders
 
 - Configure business contact details, hours and service rules in `business_settings`.

@@ -4,7 +4,7 @@
 
 1. **GitHub** — repository under your user (not an organization repo unless you choose).
 2. **Supabase** — free tier project for Postgres + Auth.
-3. **Vercel** — import the GitHub repo (optional until you go live).
+3. **Vercel** — import the GitHub repo for production hosting. **Step-by-step:** `docs/DEPLOY_VERCEL.md`.
 
 ## Environment variables
 
