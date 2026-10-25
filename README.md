@@ -1,36 +1,54 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Mom's Curry Co.
 
-## Getting Started
+Personal direct-ordering web app for a home-style Indian cloud kitchen. **Not affiliated with any employer or organization.**
 
-First, run the development server:
+Tagline: *A little taste of home.*
+
+## Stack
+
+- Next.js (App Router), TypeScript, Tailwind CSS
+- Supabase (PostgreSQL, Auth, Storage when enabled)
+- Vitest for domain/order logic tests
+
+## Project location
+
+Standalone repo folder (not inside LLA or any work monorepo):
+
+`/Users/sidhantkaushal/Desktop/moms-curry-co`
+
+Open this folder in Cursor for development.
+
+## Local setup
+
+1. Push to your **personal** GitHub account (optional).
+2. Supabase: follow **`docs/supabase-setup.md`** (env vars, migration, admin user).
+3. Copy `.env.example` → `.env.local` and fill in values from Supabase.
+4. Apply migrations: see also `docs/deployment.md`.
+4. Create a Supabase Auth user for yourself and insert into `admin_profiles`.
+5. Run:
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Scripts
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Command | Purpose |
+|---------|---------|
+| `npm run dev` | Development server |
+| `npm run build` | Production build |
+| `npm run lint` | ESLint |
+| `npm run test` | Vitest unit tests |
+| `npm run typecheck` | TypeScript |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Documentation
 
-## Learn More
+See the `docs/` folder for requirements, architecture, security, testing and deployment.
 
-To learn more about Next.js, take a look at the following resources:
+## Before accepting real orders
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Configure business contact details, hours and service rules in `business_settings`.
+- Publish a daily menu with real prices (INR, paise in DB).
+- Replace legal placeholder pages (`privacy`, `terms`, `cancellation-refunds`).
+- Confirm payment methods match what you actually support.
